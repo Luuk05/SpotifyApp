@@ -1,0 +1,9 @@
+Wat is een speellijst?
+Een speellijst is een zelfgemaakte afspeellijst en niet die van een ander
+Er moet een optie komen waarbij aan afspeellijst kan worden gekopiert en in jouw speellijst worden gezet.
+
+Wat moet er allemaal weergegeven worden als er een nummer word afgespeelt?
+Alleen de naam van nummer, de afspeel duratie, afspeelbalkje en next knop.
+
+Waar moeten de nummers, afspeellijsten en albums vandaan komen? Ander bestand?
+Mag hard coded. Als er tijd over is mag het via een extern bestand.
