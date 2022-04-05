@@ -5,17 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public class Nummer
+public class Album
 {
     public string naam { get; private set; }
     public string artiest { get; private set; }
-    public double duratie { get; private set; }
+    public List<Nummer> nummers { get; private set; }
 
-    public Nummer(string naam, string artiest, double duratie)
+    public Album(string naam, string artiest, List<Nummer> nummers)
     {
         this.naam = naam;
         this.artiest = artiest;
-        this.duratie = duratie;
+        this.nummers = nummers;
     }
 
 
