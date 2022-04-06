@@ -13,18 +13,28 @@ public class Program
         Console.WriteLine("Welkom bij deze muziek app, wat is jouw naam? ");
         string input = Console.ReadLine();
 
-
         Gebruiker gebruiker = new Gebruiker(input);
         Console.WriteLine("Gebruiker aangemaakt met naam " + gebruiker.naam + "\r");
 
         input = "";
 
         while (!input.Equals("exit")) {
-            Console.WriteLine("=================================================== \r");
-            Console.WriteLine("Jouw afspeellijst:  " + gebruiker.afspeellijst.naam + "\r");
+            Console.WriteLine("==========================================================================");
+            Console.WriteLine("Jouw afspeellijst:  " + gebruiker.afspeellijst.naam);
             //Console.WriteLine("Jouw album:         " + gebruiker.album.naam + "\r");
-            Console.WriteLine("Jouw vriendenlijst: " + (gebruiker.vriendenlijst.vrienden.Any() ? gebruiker.vriendenlijst : "Er staat nog niemand in jouw vriendenlijst.") + "\r");
-            Console.WriteLine("=================================================== \r");
+            Console.WriteLine("Jouw vriendenlijst: " + (gebruiker.vriendenlijst.vrienden.Any() ? gebruiker.vriendenlijst : "Er staat nog niemand in jouw vriendenlijst."));
+            Console.WriteLine("==========================================================================");
+
+            Console.WriteLine("\r \r \r \r");
+
+
+            Console.WriteLine("==========================================================================");
+            Console.WriteLine("Menu: Druk cijfer om resultaat te krijgen.");
+            Console.WriteLine("1 : Speel nummer af");
+            Console.WriteLine("2 : Speel afspeellijst af");
+            Console.WriteLine("3 : Bekijk vriendenlijst");
+            Console.WriteLine("4 : Instellingen");
+            Console.WriteLine("==========================================================================");
 
             input = Console.ReadLine();
         }
