@@ -12,9 +12,21 @@ public class Program
 
         Console.WriteLine("Welkom bij deze muziek app, wat is jouw naam? ");
         string input = Console.ReadLine();
-        Afspeellijst legeSpeellijst = new Afspeellijst("Jouw afspeellijst");
 
-        Gebruiker gebruiker1 = new Gebruiker(input, legeSpeellijst);
 
+        Gebruiker gebruiker = new Gebruiker(input);
+        Console.WriteLine("Gebruiker aangemaakt met naam " + gebruiker.naam + "\r");
+
+        input = "";
+
+        while (!input.Equals("exit")) {
+            Console.WriteLine("=================================================== \r");
+            Console.WriteLine("Jouw afspeellijst:  " + gebruiker.afspeellijst.naam + "\r");
+            //Console.WriteLine("Jouw album:         " + gebruiker.album.naam + "\r");
+            Console.WriteLine("Jouw vriendenlijst: " + (gebruiker.vriendenlijst.vrienden.Any() ? gebruiker.vriendenlijst : "Er staat nog niemand in jouw vriendenlijst.") + "\r");
+            Console.WriteLine("=================================================== \r");
+
+            input = Console.ReadLine();
+        }
     }   
 }

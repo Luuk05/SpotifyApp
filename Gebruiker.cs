@@ -9,11 +9,13 @@ public class Gebruiker
 {
     public string naam { get; private set; }
     public Afspeellijst afspeellijst { get; private set; }
+    public Vriendenlijst vriendenlijst { get; private set; }
 
-    public Gebruiker(string naam, Afspeellijst afspeellijst)
+    public Gebruiker(string naam)
     {
         this.naam = naam;
-        this.afspeellijst = afspeellijst;
+        this.afspeellijst = new Afspeellijst("Jouw afspeellijst");
+        this.vriendenlijst = new Vriendenlijst(new List<Gebruiker>());
     }
 
 
