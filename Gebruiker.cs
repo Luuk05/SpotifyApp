@@ -7,15 +7,18 @@ using System.Threading.Tasks;
 
 public class Gebruiker
 {
-    public string naam { get; private set; }
-    public Afspeellijst afspeellijst { get; private set; }
-    public Vriendenlijst vriendenlijst { get; private set; }
+    public string naam { get; set; }
+    public Afspeellijst afspeellijst { get; set; }
+    public Vriendenlijst vriendenlijst { get; set; }
+    public Album album { get; set; }
+
 
     public Gebruiker(string naam)
     {
         this.naam = naam;
         this.afspeellijst = new Afspeellijst("Jouw afspeellijst");
         this.vriendenlijst = new Vriendenlijst(new List<Gebruiker>());
+        this.album = new Album();
     }
 
 

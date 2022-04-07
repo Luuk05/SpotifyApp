@@ -11,7 +11,7 @@ public class Album
     public string artiest { get; private set; }
     public List<Nummer> nummers { get; private set; }
 
-    public Album(string naam, string artiest, List<Nummer> nummers)
+    public Album(string naam=null, string artiest=null, List<Nummer> nummers=null)
     {
         this.naam = naam;
         this.artiest = artiest;
