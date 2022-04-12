@@ -22,14 +22,16 @@ public class Program
         randomNummers.Add(nummer6);
         randomNummers.Add(nummer7);
         randomNummers.Add(nummer8);
-        Afspeellijst nummerSpeler = new Afspeellijst("Random afspeellijst", randomNummers);
+        Afspeellijst algemeneNummerSpeler = new Afspeellijst("Random afspeellijst", randomNummers);
 
 
 
-
-
+        string input = "";
         Console.WriteLine("Welkom bij deze muziek app, wat is jouw naam? ");
-        string input = Console.ReadLine();
+        while (input.Replace(" ", "").Equals(""))
+        {     //zolang je input spaties is vraag dan naar nieuwe input zodat gebruiker altijd een naam moet invoeren
+            input = Console.ReadLine();
+        }
 
         Gebruiker gebruiker = new Gebruiker(input);
         Console.WriteLine("Gebruiker aangemaakt met naam " + gebruiker.naam + "\r");
@@ -39,7 +41,7 @@ public class Program
         while (!input.Equals("exit"))
         {
             Console.WriteLine("==========================================================================");
-            Console.WriteLine("Jouw naam:  " + gebruiker.naam);
+            Console.WriteLine("Jouw naam:          " + gebruiker.naam);
             Console.WriteLine("Jouw afspeellijst:  " + gebruiker.afspeellijst.naam);
             Console.WriteLine("Jouw album:         " + (gebruiker.album.naam == null ? "Je hebt nog geen album" : gebruiker.album.naam) + "\r");
             Console.WriteLine("Jouw vriendenlijst: " + (gebruiker.vriendenlijst.vrienden.Any() ? gebruiker.vriendenlijst : "Er staat nog niemand in jouw vriendenlijst."));
@@ -62,6 +64,51 @@ public class Program
 
             if (input == "1")
             {
+                while (!input.Equals(0))
+                {
+                    Console.WriteLine("Dit zijn de nummers waar je uit kunt kiezen: ");
+                    Console.WriteLine("0 : Ga terug");
+                    for (int i = 1; i < algemeneNummerSpeler.nummers.Count; i++)
+                    {
+                        Console.WriteLine(i + " : " + algemeneNummerSpeler.nummers[i].naam);
+                    }
+                    Console.WriteLine("Welk nummer zou je willen afspelen? Druk cijfer om resultaat te krijgen. ");
+                    input = Console.ReadLine();
+
+                    if (Convert.ToInt32(input) == 0)
+                    {
+                        break;
+                    }
+
+                    Nummer huidigNummer = algemeneNummerSpeler.nummers[Convert.ToInt32(input)];
+                                       
+                    huidigNummer.speel();
+                    input = Console.ReadLine();
+
+                    if (input == "1")
+                    {
+                        huidigNummer.pauzeer();
+                        input = Console.ReadLine();
+                        huidigNummer.speel();
+                    }
+                    else if (input == "2")
+                    {
+                        huidigNummer.volgende();
+                        continue;
+                    }
+                    else if (input == "3") 
+                    {
+                        huidigNummer.stop();
+                        break;
+                    }
+                }
+            }
+            else if (input == "2")
+            {
+
+            }
+            else if (input == "3")
+            {
 
             }
             else if (input == "2")
@@ -82,7 +129,8 @@ public class Program
                 Console.WriteLine("==========================================================================");
 
                 input = Console.ReadLine();
-                if (input.Equals("1")) {
+                if (input.Equals("1"))
+                {
                     Console.WriteLine("\r \r \r \r");
                     Console.WriteLine("==========================================================================");
                     Console.WriteLine("Je huidige gebruikersnaam is: " + gebruiker.naam);
@@ -106,3 +154,4 @@ public class Program
 
     }
 }
+

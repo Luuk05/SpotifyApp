@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public class Nummer
+public class Nummer : IAfspelen
 {
     public string naam { get; private set; }
     public string artiest { get; private set; }
@@ -20,6 +20,28 @@ public class Nummer
         this.genre = genre;
     }
 
+    public void speel()
+    {
+        Console.WriteLine("Op het moment aan het afspelen: ");
+        Console.WriteLine(this.naam + " van " + this.artiest);
+        Console.WriteLine("1. pauzeer   |--------------------------|  2. Volgende / Ander nummer  3. Stop");
 
+    }
+
+    public void pauzeer()
+    {
+        Console.WriteLine("Afspelen gepauzeerd...");
+        Console.WriteLine("1. Afspelen");
+    }
+
+    public void volgende()
+    {
+        Console.WriteLine("Kies nieuw nummer");
+    }
+
+    public void stop()
+    {
+        Console.WriteLine("Muziek gestopt");
+    }
 }
 
