@@ -81,7 +81,7 @@ public class Program
                     }
 
                     Nummer huidigNummer = algemeneNummerSpeler.nummers[Convert.ToInt32(input)];
-                                       
+
                     huidigNummer.speel();
                     input = Console.ReadLine();
 
@@ -96,7 +96,7 @@ public class Program
                         huidigNummer.volgende();
                         continue;
                     }
-                    else if (input == "3") 
+                    else if (input == "3")
                     {
                         huidigNummer.stop();
                         break;
@@ -146,6 +146,20 @@ public class Program
                     Console.WriteLine("==========================================================================");
                 }
 
+            }
+            else {
+                if (input.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("==========================================================================");
+                    Console.WriteLine("Ongeldige invoer!");
+                    Console.WriteLine("==========================================================================");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                }
             }
 
 
