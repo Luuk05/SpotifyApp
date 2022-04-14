@@ -64,44 +64,56 @@ public class Program
 
             if (input == "1")
             {
+                bool? pauze = null;
                 while (!input.Equals(0))
                 {
-                    Console.WriteLine("==========================================================================");
-                    Console.WriteLine("Dit zijn de nummers waar je uit kunt kiezen: ");
-                    Console.WriteLine("0 : Ga terug");
-                    Console.WriteLine("");
-                    for (int i = 1; i < algemeneNummerSpeler.nummers.Count; i++)
+                    if (pauze.HasValue && pauze.Value)
                     {
-                        Console.WriteLine(i + " : " + algemeneNummerSpeler.nummers[i].naam);
+                        string speelVerder = Console.ReadLine();
+                        pauze = false;
                     }
-                    Console.WriteLine("Welk nummer zou je willen afspelen? Druk cijfer om resultaat te krijgen. ");
-                    Console.WriteLine("==========================================================================");
+                    else
+                    {
+                        Console.WriteLine("==========================================================================");
+                        Console.WriteLine("Dit zijn de nummers waar je uit kunt kiezen: ");
+                        Console.WriteLine("0 : Ga terug");
+                        Console.WriteLine("");
+                        for (int i = 1; i < algemeneNummerSpeler.nummers.Count; i++)
+                        {
+                            Console.WriteLine(i + " : " + algemeneNummerSpeler.nummers[i].naam);
+                        }
+                        Console.WriteLine("Welk nummer zou je willen afspelen? Druk cijfer om resultaat te krijgen. ");
+                        Console.WriteLine("==========================================================================");
 
-                    input = Console.ReadLine();
-                    bool succes = int.TryParse(input, out int number);
-                    if (!succes)
-                    {
-                        break;
-                    }
-                    else if (Convert.ToInt32(input) > algemeneNummerSpeler.nummers.Count) {
-                        break;
-                    }
+                        input = Console.ReadLine();
+                        bool succes = int.TryParse(input, out int number);
+                        if (!succes)
+                        {
+                            break;
+                        }
+                        else if (Convert.ToInt32(input) >= algemeneNummerSpeler.nummers.Count)
+                        {
+                            break;
+                        }
 
-                    if (Convert.ToInt32(input) == 0)
-                    {
-                        break;
+                        if (Convert.ToInt32(input) == 0)
+                        {
+                            break;
+                        }
                     }
+                    
 
                     Nummer huidigNummer = algemeneNummerSpeler.nummers[Convert.ToInt32(input)];
 
                     huidigNummer.speel();
+                    pauze = false;
                     input = Console.ReadLine();
 
                     if (input == "1")
                     {
                         huidigNummer.pauzeer();
-                        input = Console.ReadLine();
-                        huidigNummer.speel();
+                        pauze = true;
+                        continue;
                     }
                     else if (input == "2")
                     {
