@@ -30,18 +30,24 @@ public class Nummer : IAfspelen
 
     public void pauzeer()
     {
+        Console.WriteLine("==========================================================================");
         Console.WriteLine("Afspelen gepauzeerd...");
         Console.WriteLine("1. Afspelen");
+        Console.WriteLine("==========================================================================");
     }
 
     public void volgende()
     {
+        Console.WriteLine("==========================================================================");
         Console.WriteLine("Kies nieuw nummer");
+        Console.WriteLine("==========================================================================");
     }
 
     public void stop()
     {
+        Console.WriteLine("==========================================================================");
         Console.WriteLine("Muziek gestopt");
+        Console.WriteLine("==========================================================================");
     }
 }
 
