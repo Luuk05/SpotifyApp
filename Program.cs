@@ -5,6 +5,21 @@ public class Program
 {
     static void Main(string[] args)
     {
+        Nummer exploreNummer1 = new Nummer("Bohemian Rhapsody", "Queen", 5.55, "rock");
+        Nummer exploreNummer2 = new Nummer("Circles", "Post Malone", 3.13, "pop");
+        Nummer exploreNummer3 = new Nummer("Lose yourself", "Eminem", 5.22, "hip hop");
+        Nummer exploreNummer4 = new Nummer("Dancing Queen", "ABBA", 5.22, "dance");
+
+        List<Nummer> exploreNummers = new List<Nummer>();
+        exploreNummers.Add(exploreNummer1);
+        exploreNummers.Add(exploreNummer2);
+        exploreNummers.Add(exploreNummer3);
+        exploreNummers.Add(exploreNummer4);
+        Afspeellijst exploreAfspeellijst = new Afspeellijst("Explore afspeellijst", exploreNummers);
+
+
+
+
         Nummer nummer1 = new Nummer("Bohemian Rhapsody", "Queen", 5.55, "rock");
         Nummer nummer2 = new Nummer("Under pressure", "Queen", 4.08, "rock");
         Nummer nummer3 = new Nummer("Radio Ga Ga", "Queen", 5.48, "rock");
@@ -24,13 +39,13 @@ public class Program
         Nummer nummer8 = new Nummer("Congratulations", "Post Malone", 3.40, "pop");
         Nummer nummer9 = new Nummer("Better now", "Post Malone", 3.51, "pop");
 
-        List<Nummer> randomNummers = new List<Nummer>();
-        randomNummers.Add(nummer5);
-        randomNummers.Add(nummer6);
-        randomNummers.Add(nummer7);
-        randomNummers.Add(nummer8);
-        randomNummers.Add(nummer9);
-        Afspeellijst algemeneNummerSpeler = new Afspeellijst("Algemene afspeellijst", randomNummers);
+        List<Nummer> popNummers = new List<Nummer>();
+        popNummers.Add(nummer5);
+        popNummers.Add(nummer6);
+        popNummers.Add(nummer7);
+        popNummers.Add(nummer8);
+        popNummers.Add(nummer9);
+        Afspeellijst popAfspeellijst = new Afspeellijst("Pop afspeellijst", popNummers);
 
 
         Nummer nummer10 = new Nummer("Lose yourself", "Eminem", 5.22, "hip hop");
@@ -62,7 +77,7 @@ public class Program
         Afspeellijst danceAfspeellijst = new Afspeellijst("Dance afspeellijst", danceNummers);
 
 
-        List<Afspeellijst> alleAfspeellijsten = new List<Afspeellijst>() { rockAfspeellijst, algemeneNummerSpeler, hipHopAfspeellijst, danceAfspeellijst };
+        List<Afspeellijst> alleAfspeellijsten = new List<Afspeellijst>() { rockAfspeellijst, popAfspeellijst, hipHopAfspeellijst, danceAfspeellijst };
 
 
 
@@ -105,7 +120,7 @@ public class Program
             if (input == "1")
             {
                 bool? pauze = null;
-                while (!input.Equals(0))
+                while (!input.Equals("-"))
                 {
                     if (pauze.HasValue && pauze.Value)
                     {
@@ -118,9 +133,9 @@ public class Program
                         Console.WriteLine("Dit zijn de nummers waar je uit kunt kiezen: ");
                         Console.WriteLine("- (min teken) : Ga terug");
                         Console.WriteLine("");
-                        for (int i = 0; i < algemeneNummerSpeler.nummers.Count; i++)
+                        for (int i = 0; i < exploreAfspeellijst.nummers.Count; i++)
                         {
-                            Console.WriteLine(i + " : " + algemeneNummerSpeler.nummers[i].naam);
+                            Console.WriteLine(i + " : " + exploreAfspeellijst.nummers[i].naam);
                         }
                         Console.WriteLine("Welk nummer zou je willen afspelen? Druk cijfer om resultaat te krijgen. ");
                         Console.WriteLine("==========================================================================");
@@ -131,18 +146,14 @@ public class Program
                         {
                             break;
                         }
-                        else if (Convert.ToInt32(input) >= algemeneNummerSpeler.nummers.Count)
+                        else if (Convert.ToInt32(input) >= exploreAfspeellijst.nummers.Count)
                         {
                             break;
                         }
 
-                        if (input == "-")
-                        {
-                            break;
-                        }
                     }
                     
-                    Nummer huidigNummer = algemeneNummerSpeler.nummers[Convert.ToInt32(input)];
+                    Nummer huidigNummer = exploreAfspeellijst.nummers[Convert.ToInt32(input)];
 
                     huidigNummer.speel();
                     pauze = false;
@@ -168,32 +179,32 @@ public class Program
             }
             else if (input == "2")
             {
-                Console.WriteLine("==========================================================================");
-                Console.WriteLine("Dit zijn de afspeellijsten waar je uit kunt kiezen: ");
-                Console.WriteLine("- (min teken) : Ga terug");
-                Console.WriteLine("");
-                for (int i = 0; i < alleAfspeellijsten.Count; i++)
+                while (!input.Equals("-"))
                 {
-                    Console.WriteLine(i + " : " + alleAfspeellijsten[i].naam);
-                }
-                Console.WriteLine("Welke afspeellijst zou je willen afspelen? Druk cijfer om resultaat te krijgen. ");
-                Console.WriteLine("==========================================================================");
+                    Console.WriteLine("==========================================================================");
+                    Console.WriteLine("Dit zijn de afspeellijsten waar je uit kunt kiezen: ");
+                    Console.WriteLine("- (min teken) : Ga terug");
+                    Console.WriteLine("");
+                    for (int i = 0; i < alleAfspeellijsten.Count; i++)
+                    {
+                        Console.WriteLine(i + " : " + alleAfspeellijsten[i].naam);
+                    }
+                    Console.WriteLine("Welke afspeellijst zou je willen afspelen? Druk cijfer om resultaat te krijgen. ");
+                    Console.WriteLine("==========================================================================");
 
-                input = Console.ReadLine();
-                bool succes = int.TryParse(input, out int number);
-                if (!succes)
-                {
-                    break;
-                }
-                else if (Convert.ToInt32(input) >= alleAfspeellijsten.Count)
-                {
-                    break;
+                    input = Console.ReadLine();
+                    bool succes = int.TryParse(input, out int number);
+                    if (!succes)
+                    {
+                        break;
+                    }
+                    else if (Convert.ToInt32(input) >= alleAfspeellijsten.Count)
+                    {
+                        break;
+                    }
                 }
 
-                if (input == "-")
-                {
-                    break;
-                }
+
 
 
 
