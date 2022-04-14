@@ -10,6 +10,13 @@ public class Program
         Nummer nummer3 = new Nummer("Radio Ga Ga", "Queen", 5.48, "rock");
         Nummer nummer4 = new Nummer("I want to break free", "Queen", 4.18, "rock");
 
+        List<Nummer> rockNummers = new List<Nummer>();
+        rockNummers.Add(nummer1);
+        rockNummers.Add(nummer2);
+        rockNummers.Add(nummer3);
+        rockNummers.Add(nummer4);
+        Afspeellijst rockAfspeellijst = new Afspeellijst("Rock afspeellijst", rockNummers);
+
 
         Nummer nummer5 = new Nummer("Circles", "Post Malone", 3.13, "pop");
         Nummer nummer6 = new Nummer("Sunflower", "Post Malone", 2.37, "pop");
@@ -22,7 +29,40 @@ public class Program
         randomNummers.Add(nummer6);
         randomNummers.Add(nummer7);
         randomNummers.Add(nummer8);
-        Afspeellijst algemeneNummerSpeler = new Afspeellijst("Random afspeellijst", randomNummers);
+        randomNummers.Add(nummer9);
+        Afspeellijst algemeneNummerSpeler = new Afspeellijst("Algemene afspeellijst", randomNummers);
+
+
+        Nummer nummer10 = new Nummer("Lose yourself", "Eminem", 5.22, "hip hop");
+        Nummer nummer11 = new Nummer("Without me", "Eminem", 4.50, "hip hop");
+        Nummer nummer12 = new Nummer("The Real Slim Shady", "Eminem", 4.44, "hip hop");
+        Nummer nummer13 = new Nummer("Stan", "Eminem", 6.44, "hip hop");
+        Nummer nummer14 = new Nummer("Mockingbird", "Eminem", 4.10, "hip hop");
+
+        List<Nummer> hipHopNummers = new List<Nummer>();
+        hipHopNummers.Add(nummer10);
+        hipHopNummers.Add(nummer11);
+        hipHopNummers.Add(nummer12);
+        hipHopNummers.Add(nummer13);
+        hipHopNummers.Add(nummer14);
+        Afspeellijst hipHopAfspeellijst = new Afspeellijst("Hip hop afspeellijst", hipHopNummers);
+
+
+        Nummer nummer15 = new Nummer("Dancing Queen", "ABBA", 5.22, "dance");
+        Nummer nummer16 = new Nummer("I’m So Excited", "The Pointer Sisters", 4.50, "dance");
+        Nummer nummer17 = new Nummer("I Will Survive ", "Gloria Gaynor", 4.44, "dance");
+        Nummer nummer18 = new Nummer("Stayin’ Alive", " Bee Gees", 6.44, "dance");
+        Nummer nummer19 = new Nummer("Billie Jean", "Michael Jackson", 4.10, "dance");
+        List<Nummer> danceNummers = new List<Nummer>();
+        danceNummers.Add(nummer15);
+        danceNummers.Add(nummer16);
+        danceNummers.Add(nummer17);
+        danceNummers.Add(nummer18);
+        danceNummers.Add(nummer19);
+        Afspeellijst danceAfspeellijst = new Afspeellijst("Dance afspeellijst", danceNummers);
+
+
+        List<Afspeellijst> alleAfspeellijsten = new List<Afspeellijst>() { rockAfspeellijst, algemeneNummerSpeler, hipHopAfspeellijst, danceAfspeellijst };
 
 
 
@@ -51,8 +91,8 @@ public class Program
 
             Console.WriteLine("==========================================================================");
             Console.WriteLine("Menu: Druk cijfer om resultaat te krijgen.");
-            Console.WriteLine("1 : Bekijk nummer(s)");
-            Console.WriteLine("2 : Bekijk afspeellijst(en) af");
+            Console.WriteLine("1 : Bekijk willekeurige nummer(s)");
+            Console.WriteLine("2 : Bekijk afspeellijst(en)");
             Console.WriteLine("3 : Bekijk album(s)");
             Console.WriteLine("4 : Bekijk vriendenlijst");
             Console.WriteLine("5 : Instellingen");
@@ -76,9 +116,9 @@ public class Program
                     {
                         Console.WriteLine("==========================================================================");
                         Console.WriteLine("Dit zijn de nummers waar je uit kunt kiezen: ");
-                        Console.WriteLine("0 : Ga terug");
+                        Console.WriteLine("- (min teken) : Ga terug");
                         Console.WriteLine("");
-                        for (int i = 1; i < algemeneNummerSpeler.nummers.Count; i++)
+                        for (int i = 0; i < algemeneNummerSpeler.nummers.Count; i++)
                         {
                             Console.WriteLine(i + " : " + algemeneNummerSpeler.nummers[i].naam);
                         }
@@ -96,13 +136,12 @@ public class Program
                             break;
                         }
 
-                        if (Convert.ToInt32(input) == 0)
+                        if (input == "-")
                         {
                             break;
                         }
                     }
                     
-
                     Nummer huidigNummer = algemeneNummerSpeler.nummers[Convert.ToInt32(input)];
 
                     huidigNummer.speel();
@@ -129,6 +168,36 @@ public class Program
             }
             else if (input == "2")
             {
+                Console.WriteLine("==========================================================================");
+                Console.WriteLine("Dit zijn de afspeellijsten waar je uit kunt kiezen: ");
+                Console.WriteLine("- (min teken) : Ga terug");
+                Console.WriteLine("");
+                for (int i = 0; i < alleAfspeellijsten.Count; i++)
+                {
+                    Console.WriteLine(i + " : " + alleAfspeellijsten[i].naam);
+                }
+                Console.WriteLine("Welke afspeellijst zou je willen afspelen? Druk cijfer om resultaat te krijgen. ");
+                Console.WriteLine("==========================================================================");
+
+                input = Console.ReadLine();
+                bool succes = int.TryParse(input, out int number);
+                if (!succes)
+                {
+                    break;
+                }
+                else if (Convert.ToInt32(input) >= alleAfspeellijsten.Count)
+                {
+                    break;
+                }
+
+                if (input == "-")
+                {
+                    break;
+                }
+
+
+
+
 
             }
             else if (input == "3")
