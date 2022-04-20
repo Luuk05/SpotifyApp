@@ -40,7 +40,7 @@ public class Nummer : IAfspelen
     public void volgende()
     {
         Console.WriteLine("==========================================================================");
-        Console.WriteLine("Volgende nummer....");
+        Console.WriteLine("Kies nieuw nummer");
         Console.WriteLine("==========================================================================");
     }
 

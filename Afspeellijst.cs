@@ -36,7 +36,7 @@ public class Afspeellijst : IAfspelen
     public void volgende()
     {
         Console.WriteLine("==========================================================================");
-        Console.WriteLine("Kies nieuw nummer");
+        Console.WriteLine("Volgende nummer....");
         Console.WriteLine("==========================================================================");
     }
 
