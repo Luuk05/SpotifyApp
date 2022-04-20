@@ -92,6 +92,8 @@ public class Program
         Console.WriteLine("Gebruiker aangemaakt met naam " + gebruiker.naam + "\r");
 
         input = "";
+        bool? pauze = null;
+        int afspeellijstNummerIndex = 0;
 
         while (!input.Equals("exit"))
         {
@@ -119,7 +121,6 @@ public class Program
 
             if (input == "1")
             {
-                bool? pauze = null;
                 while (!input.Equals("-"))
                 {
                     if (pauze.HasValue && pauze.Value)
@@ -152,10 +153,10 @@ public class Program
                         }
 
                     }
-                    
+
                     Nummer huidigNummer = exploreAfspeellijst.nummers[Convert.ToInt32(input)];
 
-                    huidigNummer.speel();
+                    huidigNummer.speel(0);
                     pauze = false;
                     input = Console.ReadLine();
 
@@ -191,7 +192,6 @@ public class Program
                     }
                     Console.WriteLine("Welke afspeellijst zou je willen afspelen? Druk cijfer om resultaat te krijgen. ");
                     Console.WriteLine("==========================================================================");
-
                     input = Console.ReadLine();
                     bool succes = int.TryParse(input, out int number);
                     if (!succes)
@@ -202,6 +202,46 @@ public class Program
                     {
                         break;
                     }
+                    
+                    Afspeellijst huidigeAfspeellijst = alleAfspeellijsten[Convert.ToInt32(input)];
+                    input = "";
+
+                    while (input != "3") {
+                        if (pauze.HasValue && pauze.Value)
+                        {
+                            string speelVerder = Console.ReadLine();
+                            pauze = false;
+                        }
+                        else
+                        {
+                            huidigeAfspeellijst.speel(afspeellijstNummerIndex);
+                            pauze = false;
+                            input = Console.ReadLine();
+
+                            if (input == "1")
+                            {
+                                huidigeAfspeellijst.pauzeer();
+                                pauze = true;
+                                continue;
+                            }
+                            else if (input == "2")
+                            {
+                                if (afspeellijstNummerIndex == huidigeAfspeellijst.nummers.Count - 1)
+                                {
+                                    break;
+                                }
+                                afspeellijstNummerIndex += 1;
+                                huidigeAfspeellijst.volgende();
+                                continue;
+                            }
+                            else if (input == "3")
+                            {
+                                huidigeAfspeellijst.stop();
+                                break;
+                            }
+                        }
+                    }
+
                 }
 
 

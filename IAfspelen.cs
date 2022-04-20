@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public interface IAfspelen
 {
-    void speel();
+    void speel(int index = 0);
     void pauzeer();
     void volgende();
     void stop();

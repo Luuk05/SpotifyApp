@@ -20,7 +20,7 @@ public class Nummer : IAfspelen
         this.genre = genre;
     }
 
-    public void speel()
+    public void speel(int index)
     {
         Console.WriteLine("==========================================================================");
         Console.WriteLine("Op het moment aan het afspelen: ");
@@ -40,7 +40,7 @@ public class Nummer : IAfspelen
     public void volgende()
     {
         Console.WriteLine("==========================================================================");
-        Console.WriteLine("Kies nieuw nummer");
+        Console.WriteLine("Volgende nummer....");
         Console.WriteLine("==========================================================================");
     }
 
