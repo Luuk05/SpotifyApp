@@ -77,6 +77,30 @@ public class Program
         Afspeellijst danceAfspeellijst = new Afspeellijst("Dance afspeellijst", danceNummers);
 
 
+        Nummer nummer20 = new Nummer("Love of my life", "Queen", 3.37, "rock");
+        Nummer nummer21 = new Nummer("Bohemian Rhapsody", "Queen", 5.54, "rock");
+        Nummer nummer22 = new Nummer("Death on two legs", "Queen", 3.43, "rock");
+        Nummer nummer23 = new Nummer("Lazing on a sunday afternoon", "Queen", 1.07, "rock");
+        Nummer nummer24 = new Nummer("You're my best friend", "Queen", 2.50, "rock");
+        List<Nummer> album1NummersQueen = new List<Nummer>();
+        album1NummersQueen.Add(nummer20);
+        album1NummersQueen.Add(nummer21);
+        album1NummersQueen.Add(nummer22);
+        album1NummersQueen.Add(nummer23);
+        album1NummersQueen.Add(nummer24);
+        Album album1Queen = new Album("A night at the opera", album1NummersQueen, "Queen");
+
+
+        //Nummer nummer25 = new Nummer("I'm in love with my best friend", "Queen", 2.50, "rock");
+        //Nummer nummer26 = new Nummer("'39", "Queen", 3.30, "rock");
+        //Nummer nummer27 = new Nummer("Sweet lady", "Queen", 3.30, "rock");
+        //List<Nummer> album1NummersQueen = new List<Nummer>();
+        //album1NummersQueen.Add(nummer25);
+        //album1NummersQueen.Add(nummer26);
+        //album1NummersQueen.Add(nummer27);
+        
+        
+
 
 
         string input = "";
@@ -95,14 +119,14 @@ public class Program
         bool? pauze = null;
         int afspeellijstNummerIndex = 0;
 
-        string stylingLines = new String('=', 78);
+        string stylingLines = new String('=', 80);
 
         while (!input.Equals("exit"))
         {
             Console.WriteLine(stylingLines);
             Console.WriteLine("Jouw naam:          " + gebruiker.naam);
             Console.WriteLine("Jouw afspeellijst:  " + gebruiker.afspeellijst.naam);
-            Console.WriteLine("Jouw album:         " + (gebruiker.album.naam == null ? "Je hebt nog geen album" : gebruiker.album.naam) + "\r");
+            Console.WriteLine("Jouw album:         " + (gebruiker.album == null ? "Je hebt nog geen album in je lijst" : gebruiker.album.naam) + "\r");
             Console.WriteLine("Jouw vriendenlijst: " + (gebruiker.vriendenlijst.vrienden.Any() ? gebruiker.vriendenlijst : "Er staat nog niemand in jouw vriendenlijst."));
             Console.WriteLine(stylingLines);
 
@@ -353,59 +377,68 @@ public class Program
                                 }
                             }
                         }
-                    } 
-                        
-
-
-
-
-
+                    }
                 }
-
-
-
-
-
-
-
             }
             else if (input == "3")
             {
+                if (gebruiker.album == null)
+                {
+                    Console.WriteLine(stylingLines);
+                    Console.WriteLine("Je hebt nog geen album toegevoegd");
+                    while (!input.Equals("-"))
+                    {
+                        Console.WriteLine(stylingLines);
+                        Console.WriteLine("Dit zijn de albums waar je uit kunt kiezen: ");
+                        Console.WriteLine("- (min teken) : Ga terug");
+                        Console.WriteLine("");
+                        for (int i = 0; i < alleAfspeellijsten.Count; i++)
+                        {
+                            Console.WriteLine(i + " : " + alleAfspeellijsten[i].naam);
+                        }
+                        Console.WriteLine("Welke afspeellijst zou je willen afspelen? Druk cijfer om resultaat te krijgen. ");
+                        Console.WriteLine(stylingLines);
+                        input = Console.ReadLine();
+                        bool succes = int.TryParse(input, out int number);
+                        if (!succes)
+                        {
+                            break;
+                        }
+                        else if (Convert.ToInt32(input) >= alleAfspeellijsten.Count)
+                        {
+                            break;
+                        }
 
-            }
-            else if (input == "2")
-            {
-
-            }
-            else if (input == "3")
-            {
+                        Afspeellijst huidigeAfspeellijst = alleAfspeellijsten[Convert.ToInt32(input)];
+                    }
+                }
             }
             else if (input == "4")
             {
             }
             else if (input.Equals("5"))
             {
-                Console.WriteLine("==========================================================================");
+                Console.WriteLine(stylingLines);
                 Console.WriteLine("Menu: Druk cijfer om resultaat te krijgen.");
                 Console.WriteLine("1 : Verander gebruikersnaam");
-                Console.WriteLine("==========================================================================");
+                Console.WriteLine(stylingLines);
 
                 input = Console.ReadLine();
                 if (input.Equals("1"))
                 {
                     Console.WriteLine("\r \r \r \r");
-                    Console.WriteLine("==========================================================================");
+                    Console.WriteLine(stylingLines);
                     Console.WriteLine("Je huidige gebruikersnaam is: " + gebruiker.naam);
                     Console.WriteLine("Waar wil je jouw naam naar veranderen?");
-                    Console.WriteLine("==========================================================================");
+                    Console.WriteLine(stylingLines);
 
                     input = Console.ReadLine();
                     gebruiker.naam = input;
 
                     Console.WriteLine("\r \r \r \r");
-                    Console.WriteLine("==========================================================================");
+                    Console.WriteLine(stylingLines);
                     Console.WriteLine("Gebruikersnaam veranderd naar: " + gebruiker.naam);
-                    Console.WriteLine("==========================================================================");
+                    Console.WriteLine(stylingLines);
                     Thread.Sleep(1400);
                     Console.Clear();
                 }
@@ -419,9 +452,9 @@ public class Program
                 }
                 else
                 {
-                    Console.WriteLine("==========================================================================");
+                    Console.WriteLine(stylingLines);
                     Console.WriteLine("Ongeldige invoer!");
-                    Console.WriteLine("==========================================================================");
+                    Console.WriteLine(stylingLines);
                     Thread.Sleep(1000);
                     Console.Clear();
                 }
