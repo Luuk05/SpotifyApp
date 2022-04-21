@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 public interface IAfspelen
 {
-    void speel(int index = 0);
-    void pauzeer();
-    void volgende();
-    void stop();
+    void speel(int index = 0, string stylingLines = "");
+    void pauzeer(string stylingLines = "");
+    void volgende(string stylingLines = "");
+    void stop(string stylingLines = "");
 }

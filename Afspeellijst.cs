@@ -16,35 +16,35 @@ public class Afspeellijst : IAfspelen
         this.nummers = nummers;
     }
 
-    public void speel(int index)
+    public void speel(int index, string stylingLines)
     {
-        Console.WriteLine("==========================================================================");
+        Console.WriteLine(stylingLines);
         Console.WriteLine("Op het moment aan het afspelen: ");
         Console.WriteLine(this.nummers[index].naam + " van " + this.nummers[index].artiest);
         Console.WriteLine("1. pauzeer   |--------------------------|  2. Volgende / Ander nummer  3. Stop");
-        Console.WriteLine("==========================================================================");
+        Console.WriteLine(stylingLines);
     }
 
-    public void pauzeer()
+    public void pauzeer(string stylingLines)
     {
-        Console.WriteLine("==========================================================================");
+        Console.WriteLine(stylingLines);
         Console.WriteLine("Afspelen gepauzeerd...");
         Console.WriteLine("1. Afspelen");
-        Console.WriteLine("==========================================================================");
+        Console.WriteLine(stylingLines);
     }
 
-    public void volgende()
+    public void volgende(string stylingLines)
     {
-        Console.WriteLine("==========================================================================");
+        Console.WriteLine(stylingLines);
         Console.WriteLine("Volgende nummer....");
-        Console.WriteLine("==========================================================================");
+        Console.WriteLine(stylingLines);
     }
 
-    public void stop()
+    public void stop(string stylingLines)
     {
-        Console.WriteLine("==========================================================================");
+        Console.WriteLine(stylingLines);
         Console.WriteLine("Muziek gestopt");
-        Console.WriteLine("==========================================================================");
+        Console.WriteLine(stylingLines);
     }
 }
 

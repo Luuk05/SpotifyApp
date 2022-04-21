@@ -77,8 +77,6 @@ public class Program
         Afspeellijst danceAfspeellijst = new Afspeellijst("Dance afspeellijst", danceNummers);
 
 
-        List<Afspeellijst> alleAfspeellijsten = new List<Afspeellijst>() { rockAfspeellijst, popAfspeellijst, hipHopAfspeellijst, danceAfspeellijst };
-
 
 
         string input = "";
@@ -91,29 +89,33 @@ public class Program
         Gebruiker gebruiker = new Gebruiker(input);
         Console.WriteLine("Gebruiker aangemaakt met naam " + gebruiker.naam + "\r");
 
+        List<Afspeellijst> alleAfspeellijsten = new List<Afspeellijst>() { rockAfspeellijst, popAfspeellijst, hipHopAfspeellijst, danceAfspeellijst };
+
         input = "";
         bool? pauze = null;
         int afspeellijstNummerIndex = 0;
 
+        string stylingLines = new String('=', 78);
+
         while (!input.Equals("exit"))
         {
-            Console.WriteLine("==========================================================================");
+            Console.WriteLine(stylingLines);
             Console.WriteLine("Jouw naam:          " + gebruiker.naam);
             Console.WriteLine("Jouw afspeellijst:  " + gebruiker.afspeellijst.naam);
             Console.WriteLine("Jouw album:         " + (gebruiker.album.naam == null ? "Je hebt nog geen album" : gebruiker.album.naam) + "\r");
             Console.WriteLine("Jouw vriendenlijst: " + (gebruiker.vriendenlijst.vrienden.Any() ? gebruiker.vriendenlijst : "Er staat nog niemand in jouw vriendenlijst."));
-            Console.WriteLine("==========================================================================");
+            Console.WriteLine(stylingLines);
 
             Console.WriteLine("\r \r \r \r");
 
-            Console.WriteLine("==========================================================================");
+            Console.WriteLine(stylingLines);
             Console.WriteLine("Menu: Druk cijfer om resultaat te krijgen.");
             Console.WriteLine("1 : Bekijk willekeurige nummer(s)");
             Console.WriteLine("2 : Bekijk afspeellijst(en)");
             Console.WriteLine("3 : Bekijk album(s)");
             Console.WriteLine("4 : Bekijk vriendenlijst");
             Console.WriteLine("5 : Instellingen");
-            Console.WriteLine("==========================================================================");
+            Console.WriteLine(stylingLines);
 
             input = Console.ReadLine();
 
@@ -130,7 +132,7 @@ public class Program
                     }
                     else
                     {
-                        Console.WriteLine("==========================================================================");
+                        Console.WriteLine(stylingLines);
                         Console.WriteLine("Dit zijn de nummers waar je uit kunt kiezen: ");
                         Console.WriteLine("- (min teken) : Ga terug");
                         Console.WriteLine("");
@@ -139,7 +141,7 @@ public class Program
                             Console.WriteLine(i + " : " + exploreAfspeellijst.nummers[i].naam);
                         }
                         Console.WriteLine("Welk nummer zou je willen afspelen? Druk cijfer om resultaat te krijgen. ");
-                        Console.WriteLine("==========================================================================");
+                        Console.WriteLine(stylingLines);
 
                         input = Console.ReadLine();
                         bool succes = int.TryParse(input, out int number);
@@ -156,24 +158,24 @@ public class Program
 
                     Nummer huidigNummer = exploreAfspeellijst.nummers[Convert.ToInt32(input)];
 
-                    huidigNummer.speel(0);
+                    huidigNummer.speel(0, stylingLines);
                     pauze = false;
                     input = Console.ReadLine();
 
                     if (input == "1")
                     {
-                        huidigNummer.pauzeer();
+                        huidigNummer.pauzeer(stylingLines);
                         pauze = true;
                         continue;
                     }
                     else if (input == "2")
                     {
-                        huidigNummer.volgende();
+                        huidigNummer.volgende(stylingLines);
                         continue;
                     }
                     else if (input == "3")
                     {
-                        huidigNummer.stop();
+                        huidigNummer.stop(stylingLines);
                         break;
                     }
                 }
@@ -182,7 +184,7 @@ public class Program
             {
                 while (!input.Equals("-"))
                 {
-                    Console.WriteLine("==========================================================================");
+                    Console.WriteLine(stylingLines);
                     Console.WriteLine("Dit zijn de afspeellijsten waar je uit kunt kiezen: ");
                     Console.WriteLine("- (min teken) : Ga terug");
                     Console.WriteLine("");
@@ -191,7 +193,7 @@ public class Program
                         Console.WriteLine(i + " : " + alleAfspeellijsten[i].naam);
                     }
                     Console.WriteLine("Welke afspeellijst zou je willen afspelen? Druk cijfer om resultaat te krijgen. ");
-                    Console.WriteLine("==========================================================================");
+                    Console.WriteLine(stylingLines);
                     input = Console.ReadLine();
                     bool succes = int.TryParse(input, out int number);
                     if (!succes)
@@ -214,13 +216,13 @@ public class Program
                         }
                         else
                         {
-                            huidigeAfspeellijst.speel(afspeellijstNummerIndex);
+                            huidigeAfspeellijst.speel(afspeellijstNummerIndex, stylingLines);
                             pauze = false;
                             input = Console.ReadLine();
 
                             if (input == "1")
                             {
-                                huidigeAfspeellijst.pauzeer();
+                                huidigeAfspeellijst.pauzeer(stylingLines);
                                 pauze = true;
                                 continue;
                             }
@@ -231,12 +233,12 @@ public class Program
                                     break;
                                 }
                                 afspeellijstNummerIndex += 1;
-                                huidigeAfspeellijst.volgende();
+                                huidigeAfspeellijst.volgende(stylingLines);
                                 continue;
                             }
                             else if (input == "3")
                             {
-                                huidigeAfspeellijst.stop();
+                                huidigeAfspeellijst.stop(stylingLines);
                                 break;
                             }
                         }
