@@ -233,15 +233,86 @@ public class Program
                     }
                     else
                     {
-                        Console.WriteLine(stylingLines);
-                        Console.WriteLine("Wat wil je doen? ");
-                        Console.WriteLine("- (min teken) : Ga terug");
-                        Console.WriteLine("");
-                        Console.WriteLine("1. : Afspeellijst afspelen");
-                        Console.WriteLine("2. : Nummer toevoegen");
-                        input = Console.ReadLine();
+                        if (huidigeAfspeellijst.naam.Equals("Jouw afspeellijst"))
+                        {
+                            Console.WriteLine(stylingLines);
+                            Console.WriteLine("Wat wil je doen? ");
+                            Console.WriteLine("- (min teken) : Ga terug");
+                            Console.WriteLine("");
+                            Console.WriteLine("1. : Afspeellijst afspelen");
+                            Console.WriteLine("2. : Nummer toevoegen");
+                            input = Console.ReadLine();
 
-                        if (input == "1")
+                            if (input == "1")
+                            {
+                                input = "";
+
+                                while (input != "3")
+                                {
+                                    if (pauze.HasValue && pauze.Value)
+                                    {
+                                        string speelVerder = Console.ReadLine();
+                                        pauze = false;
+                                    }
+                                    else
+                                    {
+                                        huidigeAfspeellijst.speel(afspeellijstNummerIndex, stylingLines);
+                                        pauze = false;
+                                        input = Console.ReadLine();
+
+                                        if (input == "1")
+                                        {
+                                            huidigeAfspeellijst.pauzeer(stylingLines);
+                                            pauze = true;
+                                            continue;
+                                        }
+                                        else if (input == "2")
+                                        {
+                                            if (afspeellijstNummerIndex == huidigeAfspeellijst.nummers.Count - 1)
+                                            {
+                                                break;
+                                            }
+                                            afspeellijstNummerIndex += 1;
+                                            huidigeAfspeellijst.volgende(stylingLines);
+                                            continue;
+                                        }
+                                        else if (input == "3")
+                                        {
+                                            huidigeAfspeellijst.stop(stylingLines);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            else if (input == "2")
+                            {
+                                Console.WriteLine(stylingLines);
+                                Console.WriteLine("Dit zijn de nummers die je kunt toevoegen:");
+                                for (int i = 0; i < exploreAfspeellijst.nummers.Count; i++)
+                                {
+                                    Console.WriteLine(i + " : " + exploreAfspeellijst.nummers[i].naam);
+                                }
+                                Console.WriteLine("Welk nummer zou je willen toevoegen? Druk cijfer om resultaat te krijgen.");
+                                Console.WriteLine(stylingLines);
+                                input = Console.ReadLine();
+                                bool succes2 = int.TryParse(input, out int number2);
+                                if (!succes2)
+                                {
+                                    break;
+                                }
+                                else if (Convert.ToInt32(input) >= alleAfspeellijsten.Count)
+                                {
+                                    break;
+                                }
+                                Nummer gekozenNummer = exploreAfspeellijst.nummers[Convert.ToInt32(input)];
+                                huidigeAfspeellijst.nummers.Add(gekozenNummer);
+                            }
+                            else
+                            {
+                                input = "1";
+                            }
+                        }
+                        else
                         {
                             input = "";
 
@@ -279,38 +350,11 @@ public class Program
                                         huidigeAfspeellijst.stop(stylingLines);
                                         break;
                                     }
-                                    else if (input == "4")
-                                    {
-                                        Console.WriteLine(stylingLines);
-                                        Console.WriteLine("Dit zijn de nummers die je kunt toevoegen.");
-                                    }
                                 }
                             }
                         }
-                        else if (input == "2")
-                        {
-                            Console.WriteLine(stylingLines);
-                            Console.WriteLine("Dit zijn de nummers die je kunt toevoegen:");
-                            for (int i = 0; i < exploreAfspeellijst.nummers.Count; i++)
-                            {
-                                Console.WriteLine(i + " : " + exploreAfspeellijst.nummers[i].naam);
-                            }
-                            Console.WriteLine("Welk nummer zou je willen toevoegen? Druk cijfer om resultaat te krijgen.");
-                            Console.WriteLine(stylingLines);
-                            input = Console.ReadLine();
-                            bool succes2 = int.TryParse(input, out int number2);
-                            if (!succes2)
-                            {
-                                break;
-                            }
-                            else if (Convert.ToInt32(input) >= alleAfspeellijsten.Count)
-                            {
-                                break;
-                            }
-                            Nummer gekozenNummer = exploreAfspeellijst.nummers[Convert.ToInt32(input)];
-                            huidigeAfspeellijst.nummers.Add(gekozenNummer);
-                        }
-                    }
+                    } 
+                        
 
 
 
