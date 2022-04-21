@@ -10,7 +10,7 @@ public class Afspeellijst : IAfspelen
     public string naam { get; set; }
     public List<Nummer> nummers { get; private set; }
 
-    public Afspeellijst(string naam, List<Nummer> nummers=null)
+    public Afspeellijst(string naam, List<Nummer> nummers )
     {
         this.naam = naam;
         this.nummers = nummers;
@@ -21,7 +21,7 @@ public class Afspeellijst : IAfspelen
         Console.WriteLine(stylingLines);
         Console.WriteLine("Op het moment aan het afspelen: ");
         Console.WriteLine(this.nummers[index].naam + " van " + this.nummers[index].artiest);
-        Console.WriteLine("1. pauzeer   |--------------------------|  2. Volgende / Ander nummer  3. Stop");
+        Console.WriteLine("1. pauzeer   |--------------------------|   2. Volgende   3. Stop");
         Console.WriteLine(stylingLines);
     }
 

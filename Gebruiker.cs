@@ -16,7 +16,7 @@ public class Gebruiker
     public Gebruiker(string naam)
     {
         this.naam = naam;
-        this.afspeellijst = new Afspeellijst("Jouw afspeellijst");
+        this.afspeellijst = new Afspeellijst("Jouw afspeellijst", new List<Nummer>());
         this.vriendenlijst = new Vriendenlijst(new List<Gebruiker>());
         this.album = new Album();
     }

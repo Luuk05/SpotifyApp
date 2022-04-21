@@ -25,7 +25,7 @@ public class Nummer : IAfspelen
         Console.WriteLine(stylingLines);
         Console.WriteLine("Op het moment aan het afspelen: ");
         Console.WriteLine(this.naam + " van " + this.artiest);
-        Console.WriteLine("1. pauzeer   |--------------------------|  2. Volgende / Ander nummer  3. Stop");
+        Console.WriteLine("1. pauzeer    |--------------------------|   2. Volgende / Ander nummer   3. Stop");
         Console.WriteLine(stylingLines);
     }
 
