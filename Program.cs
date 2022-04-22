@@ -81,25 +81,37 @@ public class Program
         Nummer nummer21 = new Nummer("Bohemian Rhapsody", "Queen", 5.54, "rock");
         Nummer nummer22 = new Nummer("Death on two legs", "Queen", 3.43, "rock");
         Nummer nummer23 = new Nummer("Lazing on a sunday afternoon", "Queen", 1.07, "rock");
-        Nummer nummer24 = new Nummer("You're my best friend", "Queen", 2.50, "rock");
         List<Nummer> album1NummersQueen = new List<Nummer>();
         album1NummersQueen.Add(nummer20);
         album1NummersQueen.Add(nummer21);
         album1NummersQueen.Add(nummer22);
         album1NummersQueen.Add(nummer23);
-        album1NummersQueen.Add(nummer24);
         Album album1Queen = new Album("A night at the opera", album1NummersQueen, "Queen");
 
 
-        //Nummer nummer25 = new Nummer("I'm in love with my best friend", "Queen", 2.50, "rock");
-        //Nummer nummer26 = new Nummer("'39", "Queen", 3.30, "rock");
-        //Nummer nummer27 = new Nummer("Sweet lady", "Queen", 3.30, "rock");
-        //List<Nummer> album1NummersQueen = new List<Nummer>();
-        //album1NummersQueen.Add(nummer25);
-        //album1NummersQueen.Add(nummer26);
-        //album1NummersQueen.Add(nummer27);
-        
-        
+        Nummer nummer24 = new Nummer("You're my best friend", "Queen", 2.50, "rock");
+        Nummer nummer25 = new Nummer("I'm in love with my best friend", "Queen", 2.50, "rock");
+        Nummer nummer26 = new Nummer("'39", "Queen", 3.30, "rock");
+        Nummer nummer27 = new Nummer("Sweet lady", "Queen", 3.30, "rock");
+        List<Nummer> album2NummersQueen = new List<Nummer>();
+        album2NummersQueen.Add(nummer24);
+        album2NummersQueen.Add(nummer25);
+        album2NummersQueen.Add(nummer26);
+        album2NummersQueen.Add(nummer27);
+        Album album2Queen = new Album("A night at the opera - tweede deel", album2NummersQueen, "Queen");
+
+
+        Nummer nummer28 = new Nummer("Welcome to the jungle", "Guns N' Roses", 2.50, "rock");
+        Nummer nummer29 = new Nummer("Paradise city", "Guns N' Roses", 2.50, "rock");
+        Nummer nummer30 = new Nummer("Sweet child o' mine", "Guns N' Roses", 3.30, "rock");
+        Nummer nummer31 = new Nummer("It's so easy", "Guns N' Roses", 3.30, "rock");
+        List<Nummer> album1NummersGunsNRoses = new List<Nummer>();
+        album1NummersGunsNRoses.Add(nummer28);
+        album1NummersGunsNRoses.Add(nummer29);
+        album1NummersGunsNRoses.Add(nummer30);
+        album1NummersGunsNRoses.Add(nummer31);
+        Album album1GunsNRoses = new Album("Appetite for destruction", album1NummersGunsNRoses, "Guns N' Roses");
+
 
 
 
@@ -113,7 +125,13 @@ public class Program
         Gebruiker gebruiker = new Gebruiker(input);
         Console.WriteLine("Gebruiker aangemaakt met naam " + gebruiker.naam + "\r");
 
-        List<Afspeellijst> alleAfspeellijsten = new List<Afspeellijst>() { gebruiker.afspeellijst, rockAfspeellijst, popAfspeellijst, hipHopAfspeellijst, danceAfspeellijst };
+        List<Afspeellijst> alleAfspeellijsten = new List<Afspeellijst>() { rockAfspeellijst, popAfspeellijst, hipHopAfspeellijst, danceAfspeellijst };
+        Console.WriteLine(gebruiker.afspeellijsten[0]);
+        for (int i = 0; i < gebruiker.afspeellijsten.Count; i++)
+        {
+            alleAfspeellijsten.Add(gebruiker.afspeellijsten[i]);
+        }
+        List<Album> alleAlbums = new List<Album>() { gebruiker.album, album1Queen, album2Queen, album1GunsNRoses };
 
         input = "";
         bool? pauze = null;
@@ -125,8 +143,6 @@ public class Program
         {
             Console.WriteLine(stylingLines);
             Console.WriteLine("Jouw naam:          " + gebruiker.naam);
-            Console.WriteLine("Jouw afspeellijst:  " + gebruiker.afspeellijst.naam);
-            Console.WriteLine("Jouw album:         " + (gebruiker.album == null ? "Je hebt nog geen album in je lijst" : gebruiker.album.naam) + "\r");
             Console.WriteLine("Jouw vriendenlijst: " + (gebruiker.vriendenlijst.vrienden.Any() ? gebruiker.vriendenlijst : "Er staat nog niemand in jouw vriendenlijst."));
             Console.WriteLine(stylingLines);
 
@@ -215,6 +231,10 @@ public class Program
                     for (int i = 0; i < alleAfspeellijsten.Count; i++)
                     {
                         Console.WriteLine(i + " : " + alleAfspeellijsten[i].naam);
+                        if (i == alleAfspeellijsten.Count - 1)
+                        {
+                            Console.WriteLine(alleAfspeellijsten.Count + " : " + "Voeg afspeellijst toe");
+                        }
                     }
                     Console.WriteLine("Welke afspeellijst zou je willen afspelen? Druk cijfer om resultaat te krijgen. ");
                     Console.WriteLine(stylingLines);
@@ -224,8 +244,23 @@ public class Program
                     {
                         break;
                     }
-                    else if (Convert.ToInt32(input) >= alleAfspeellijsten.Count)
+                    else if (Convert.ToInt32(input) > alleAfspeellijsten.Count)
                     {
+                        break;
+                    }
+                    else if (Convert.ToInt32(input) == alleAfspeellijsten.Count) 
+                    {
+                        Console.WriteLine(stylingLines);
+                        Console.WriteLine("Wat wil je als afspeellijst naam?");
+                        Console.WriteLine(stylingLines);
+                        input = Console.ReadLine();
+                        Afspeellijst nieuweAfspeellijst = new Afspeellijst(input, new List<Nummer>());
+                        alleAfspeellijsten.Add(nieuweAfspeellijst);
+                        gebruiker.afspeellijsten.Add(nieuweAfspeellijst);
+                        Console.WriteLine(stylingLines);
+                        Console.WriteLine("Afspeellijst aangemaakt met naam " + nieuweAfspeellijst.naam);
+                        Console.WriteLine(stylingLines);
+                        input = "";
                         break;
                     }
 
@@ -257,8 +292,16 @@ public class Program
                     }
                     else
                     {
-                        if (huidigeAfspeellijst.naam.Equals("Jouw afspeellijst"))
+                        bool eigenAfspeellijst = false;
+                        for (int i = 0; i < gebruiker.afspeellijsten.Count; i++)
                         {
+                            if (huidigeAfspeellijst.naam.Equals(gebruiker.afspeellijsten[i].naam)) {
+                                eigenAfspeellijst=true;
+                            }
+                        }
+                        if (eigenAfspeellijst)
+                        {
+                            eigenAfspeellijst = false;
                             Console.WriteLine(stylingLines);
                             Console.WriteLine("Wat wil je doen? ");
                             Console.WriteLine("- (min teken) : Ga terug");
@@ -294,6 +337,7 @@ public class Program
                                         {
                                             if (afspeellijstNummerIndex == huidigeAfspeellijst.nummers.Count - 1)
                                             {
+                                                afspeellijstNummerIndex = 0;
                                                 break;
                                             }
                                             afspeellijstNummerIndex += 1;
@@ -302,6 +346,7 @@ public class Program
                                         }
                                         else if (input == "3")
                                         {
+                                            afspeellijstNummerIndex = 0;
                                             huidigeAfspeellijst.stop(stylingLines);
                                             break;
                                         }
@@ -363,6 +408,7 @@ public class Program
                                     {
                                         if (afspeellijstNummerIndex == huidigeAfspeellijst.nummers.Count - 1)
                                         {
+                                            afspeellijstNummerIndex = 0;
                                             break;
                                         }
                                         afspeellijstNummerIndex += 1;
@@ -371,6 +417,7 @@ public class Program
                                     }
                                     else if (input == "3")
                                     {
+                                        afspeellijstNummerIndex = 0;
                                         huidigeAfspeellijst.stop(stylingLines);
                                         break;
                                     }
