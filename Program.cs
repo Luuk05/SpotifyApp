@@ -77,39 +77,56 @@ public class Program
         Afspeellijst danceAfspeellijst = new Afspeellijst("Dance afspeellijst", danceNummers);
 
 
-        Nummer nummer20 = new Nummer("Love of my life", "Queen", 3.37, "rock");
-        Nummer nummer21 = new Nummer("Bohemian Rhapsody", "Queen", 5.54, "rock");
-        Nummer nummer22 = new Nummer("Death on two legs", "Queen", 3.43, "rock");
-        Nummer nummer23 = new Nummer("Lazing on a sunday afternoon", "Queen", 1.07, "rock");
+        Nummer nummer20 = new Nummer("Three little birds", "Bob Marley", 3.00, "reggae");
+        Nummer nummer21 = new Nummer("Jamming", "Bob Marley", 3.31, "reggae");
+        Nummer nummer22 = new Nummer("Buffalo soldier", "Bob Marley", 4.15, "reggae");
+        Nummer nummer23 = new Nummer("Waiting in vain", "Bob Marley", 4.16, "reggae");
+        Nummer nummer24 = new Nummer("Redemption song", "Bob Marley", 3.53, "reggae");
+        List<Nummer> reggaeNummers = new List<Nummer>();
+        reggaeNummers.Add(nummer20);
+        reggaeNummers.Add(nummer21);
+        reggaeNummers.Add(nummer22);
+        reggaeNummers.Add(nummer23);
+        reggaeNummers.Add(nummer24);
+        Afspeellijst reggaeAfspeellijst = new Afspeellijst("Reggae afspeellijst", reggaeNummers);
+        
+
+
+
+
+        Nummer albumNummer1 = new Nummer("Love of my life", "Queen", 3.37, "rock");
+        Nummer albumNummer2 = new Nummer("Bohemian Rhapsody", "Queen", 5.54, "rock");
+        Nummer albumNummer3 = new Nummer("Death on two legs", "Queen", 3.43, "rock");
+        Nummer albumNummer4 = new Nummer("Lazing on a sunday afternoon", "Queen", 1.07, "rock");
         List<Nummer> album1NummersQueen = new List<Nummer>();
-        album1NummersQueen.Add(nummer20);
-        album1NummersQueen.Add(nummer21);
-        album1NummersQueen.Add(nummer22);
-        album1NummersQueen.Add(nummer23);
+        album1NummersQueen.Add(albumNummer1);
+        album1NummersQueen.Add(albumNummer2);
+        album1NummersQueen.Add(albumNummer3);
+        album1NummersQueen.Add(albumNummer4);
         Album album1Queen = new Album("A night at the opera", album1NummersQueen, "Queen");
 
 
-        Nummer nummer24 = new Nummer("You're my best friend", "Queen", 2.50, "rock");
-        Nummer nummer25 = new Nummer("I'm in love with my best friend", "Queen", 2.50, "rock");
-        Nummer nummer26 = new Nummer("'39", "Queen", 3.30, "rock");
-        Nummer nummer27 = new Nummer("Sweet lady", "Queen", 3.30, "rock");
+        Nummer albumNummer5 = new Nummer("You're my best friend", "Queen", 2.50, "rock");
+        Nummer albumNummer6 = new Nummer("I'm in love with my best friend", "Queen", 2.50, "rock");
+        Nummer albumNummer7 = new Nummer("'39", "Queen", 3.30, "rock");
+        Nummer albumNummer8 = new Nummer("Sweet lady", "Queen", 3.30, "rock");
         List<Nummer> album2NummersQueen = new List<Nummer>();
-        album2NummersQueen.Add(nummer24);
-        album2NummersQueen.Add(nummer25);
-        album2NummersQueen.Add(nummer26);
-        album2NummersQueen.Add(nummer27);
+        album2NummersQueen.Add(albumNummer5);
+        album2NummersQueen.Add(albumNummer6);
+        album2NummersQueen.Add(albumNummer7);
+        album2NummersQueen.Add(albumNummer8);
         Album album2Queen = new Album("A night at the opera - tweede deel", album2NummersQueen, "Queen");
 
 
-        Nummer nummer28 = new Nummer("Welcome to the jungle", "Guns N' Roses", 2.50, "rock");
-        Nummer nummer29 = new Nummer("Paradise city", "Guns N' Roses", 2.50, "rock");
-        Nummer nummer30 = new Nummer("Sweet child o' mine", "Guns N' Roses", 3.30, "rock");
-        Nummer nummer31 = new Nummer("It's so easy", "Guns N' Roses", 3.30, "rock");
+        Nummer albumNummer9 = new Nummer("Welcome to the jungle", "Guns N' Roses", 2.50, "rock");
+        Nummer albumNummer10 = new Nummer("Paradise city", "Guns N' Roses", 2.50, "rock");
+        Nummer albumNummer11 = new Nummer("Sweet child o' mine", "Guns N' Roses", 3.30, "rock");
+        Nummer albumNummer12 = new Nummer("It's so easy", "Guns N' Roses", 3.30, "rock");
         List<Nummer> album1NummersGunsNRoses = new List<Nummer>();
-        album1NummersGunsNRoses.Add(nummer28);
-        album1NummersGunsNRoses.Add(nummer29);
-        album1NummersGunsNRoses.Add(nummer30);
-        album1NummersGunsNRoses.Add(nummer31);
+        album1NummersGunsNRoses.Add(albumNummer9);
+        album1NummersGunsNRoses.Add(albumNummer10);
+        album1NummersGunsNRoses.Add(albumNummer11);
+        album1NummersGunsNRoses.Add(albumNummer12);
         Album album1GunsNRoses = new Album("Appetite for destruction", album1NummersGunsNRoses, "Guns N' Roses");
 
 
@@ -125,7 +142,7 @@ public class Program
         Gebruiker gebruiker = new Gebruiker(input);
         Console.WriteLine("Gebruiker aangemaakt met naam " + gebruiker.naam + "\r");
 
-        List<Afspeellijst> alleAfspeellijsten = new List<Afspeellijst>() { rockAfspeellijst, popAfspeellijst, hipHopAfspeellijst, danceAfspeellijst };
+        List<Afspeellijst> alleAfspeellijsten = new List<Afspeellijst>() { rockAfspeellijst, popAfspeellijst, hipHopAfspeellijst, danceAfspeellijst, reggaeAfspeellijst };
         Console.WriteLine(gebruiker.afspeellijsten[0]);
         for (int i = 0; i < gebruiker.afspeellijsten.Count; i++)
         {
@@ -134,6 +151,18 @@ public class Program
 
         List<Album> alleAlbums = new List<Album>() { album1Queen, album2Queen, album1GunsNRoses };
 
+
+        Gebruiker vriend1 = new Gebruiker("Piet");
+        vriend1.afspeellijsten.Add(reggaeAfspeellijst);
+        Gebruiker vriend2 = new Gebruiker("Willem");
+        vriend2.afspeellijsten.Add(reggaeAfspeellijst);
+        Gebruiker vriend3 = new Gebruiker("Frederik");
+        vriend3.afspeellijsten.Add(reggaeAfspeellijst);
+
+        Vriendenlijst vriendenlijst = new Vriendenlijst( new List<Gebruiker>() { vriend1, vriend2, vriend3 } );
+        gebruiker.vriendenlijst = vriendenlijst;
+
+
         input = "";
         bool? pauze = null;
         int afspeellijstNummerIndex = 0;
@@ -141,11 +170,27 @@ public class Program
 
         string stylingLines = new String('=', 80);
 
+
+
+
+
+
+
+
         while (!input.Equals("exit"))
         {
             Console.WriteLine(stylingLines);
             Console.WriteLine("Jouw naam:          " + gebruiker.naam);
-            Console.WriteLine("Jouw vriendenlijst: " + (gebruiker.vriendenlijst.vrienden.Any() ? gebruiker.vriendenlijst : "Er staat nog niemand in jouw vriendenlijst."));
+            if (gebruiker.vriendenlijst.vrienden.Any())
+            {
+                Console.Write("Jouw vriendenlijst: ");
+                gebruiker.vriendenlijst.vrienden.ForEach(vriend => Console.Write(vriend.naam + " "));
+                Console.WriteLine("");
+            }
+            else
+            {
+                Console.WriteLine("Jouw vriendenlijst: Er staat nog niemand in jouw vriendenlijst.");
+            }
             Console.WriteLine(stylingLines);
 
             Console.WriteLine("\r \r \r \r");
@@ -508,6 +553,79 @@ public class Program
             }
             else if (input == "4")
             {
+                while (!input.Equals("-"))
+                {
+                    Console.WriteLine(stylingLines);
+                    Console.WriteLine("Dit zijn de vrienden in jouw vriendenlijst.");
+                    Console.WriteLine("- (min teken) : Ga terug");
+                    Console.WriteLine("");
+                    for (int i = 0; i < gebruiker.vriendenlijst.vrienden.Count; i++)
+                    {
+                        Console.WriteLine(i + " : " + gebruiker.vriendenlijst.vrienden[i].naam);
+                    }
+                    Console.WriteLine("Van wie wil jij een afspeellijst af willen spelen? Druk cijfer om resultaat te krijgen.");
+                    Console.WriteLine(stylingLines);
+                    input = Console.ReadLine();
+
+                    bool succes = int.TryParse(input, out int number);
+                    if (!succes)
+                    {
+                        break;
+                    }
+                    else if (Convert.ToInt32(input) > gebruiker.vriendenlijst.vrienden.Count)
+                    {
+                        break;
+                    }
+
+                    Console.WriteLine(gebruiker.vriendenlijst.vrienden[1].afspeellijsten[1]);
+
+                    Afspeellijst huidigeVriendenAfspeellijst = gebruiker.vriendenlijst.vrienden[Convert.ToInt32(input)].afspeellijsten[1];
+
+                    input = "";
+
+                    while (input != "3")
+                    {
+                        if (pauze.HasValue && pauze.Value)
+                        {
+                            string speelVerder = Console.ReadLine();
+                            pauze = false;
+                        }
+                        else
+                        {
+                            huidigeVriendenAfspeellijst.speel(afspeellijstNummerIndex, stylingLines);
+                            pauze = false;
+                            input = Console.ReadLine();
+
+                            if (input == "1")
+                            {
+                                huidigeVriendenAfspeellijst.pauzeer(stylingLines);
+                                pauze = true;
+                                continue;
+                            }
+                            else if (input == "2")
+                            {
+                                if (afspeellijstNummerIndex == huidigeVriendenAfspeellijst.nummers.Count - 1)
+                                {
+                                    afspeellijstNummerIndex = 0;
+                                    break;
+                                }
+                                afspeellijstNummerIndex += 1;
+                                huidigeVriendenAfspeellijst.volgende(stylingLines);
+                                continue;
+                            }
+                            else if (input == "3")
+                            {
+                                afspeellijstNummerIndex = 0;
+                                huidigeVriendenAfspeellijst.stop(stylingLines);
+                                break;
+                            }
+                        }
+                    }
+
+                }
+                
+
+
             }
             else if (input.Equals("5"))
             {
