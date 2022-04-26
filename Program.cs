@@ -131,11 +131,13 @@ public class Program
         {
             alleAfspeellijsten.Add(gebruiker.afspeellijsten[i]);
         }
-        List<Album> alleAlbums = new List<Album>() { gebruiker.album, album1Queen, album2Queen, album1GunsNRoses };
+
+        List<Album> alleAlbums = new List<Album>() { album1Queen, album2Queen, album1GunsNRoses };
 
         input = "";
         bool? pauze = null;
         int afspeellijstNummerIndex = 0;
+        int albumNummerIndex = 0;
 
         string stylingLines = new String('=', 80);
 
@@ -233,6 +235,7 @@ public class Program
                         Console.WriteLine(i + " : " + alleAfspeellijsten[i].naam);
                         if (i == alleAfspeellijsten.Count - 1)
                         {
+                            Console.WriteLine("");
                             Console.WriteLine(alleAfspeellijsten.Count + " : " + "Voeg afspeellijst toe");
                         }
                     }
@@ -261,6 +264,7 @@ public class Program
                         Console.WriteLine("Afspeellijst aangemaakt met naam " + nieuweAfspeellijst.naam);
                         Console.WriteLine(stylingLines);
                         input = "";
+                        Thread.Sleep(2000);
                         break;
                     }
 
@@ -429,21 +433,24 @@ public class Program
             }
             else if (input == "3")
             {
-                if (gebruiker.album == null)
+                while (!input.Equals("-"))
                 {
-                    Console.WriteLine(stylingLines);
-                    Console.WriteLine("Je hebt nog geen album toegevoegd");
-                    while (!input.Equals("-"))
+                    if (pauze.HasValue && pauze.Value)
+                    {
+                        string speelVerder = Console.ReadLine();
+                        pauze = false;
+                    }
+                    else
                     {
                         Console.WriteLine(stylingLines);
                         Console.WriteLine("Dit zijn de albums waar je uit kunt kiezen: ");
                         Console.WriteLine("- (min teken) : Ga terug");
                         Console.WriteLine("");
-                        for (int i = 0; i < alleAfspeellijsten.Count; i++)
+                        for (int i = 0; i < alleAlbums.Count; i++)
                         {
-                            Console.WriteLine(i + " : " + alleAfspeellijsten[i].naam);
+                            Console.WriteLine(i + " : " + alleAlbums[i].naam);
                         }
-                        Console.WriteLine("Welke afspeellijst zou je willen afspelen? Druk cijfer om resultaat te krijgen. ");
+                        Console.WriteLine("Welk album zou je willen afspelen? Druk cijfer om resultaat te krijgen. ");
                         Console.WriteLine(stylingLines);
                         input = Console.ReadLine();
                         bool succes = int.TryParse(input, out int number);
@@ -451,14 +458,53 @@ public class Program
                         {
                             break;
                         }
-                        else if (Convert.ToInt32(input) >= alleAfspeellijsten.Count)
+                        else if (Convert.ToInt32(input) >= alleAlbums.Count)
                         {
                             break;
                         }
+                    }
+                    Album huidigeAlbum = alleAlbums[Convert.ToInt32(input)];
 
-                        Afspeellijst huidigeAfspeellijst = alleAfspeellijsten[Convert.ToInt32(input)];
+                    while (input != "3")
+                    {
+                        if (pauze.HasValue && pauze.Value)
+                        {
+                            string speelVerder = Console.ReadLine();
+                            pauze = false;
+                        }
+                        else
+                        {
+                            huidigeAlbum.speel(albumNummerIndex, stylingLines);
+                            pauze = false;
+                            input = Console.ReadLine();
+
+                            if (input == "1")
+                            {
+                                huidigeAlbum.pauzeer(stylingLines);
+                                pauze = true;
+                                continue;
+                            }
+                            else if (input == "2")
+                            {
+                                if (albumNummerIndex == huidigeAlbum.nummers.Count - 1)
+                                {
+                                    albumNummerIndex = 0;
+                                    break;
+                                }
+                                albumNummerIndex += 1;
+                                huidigeAlbum.volgende(stylingLines);
+                                continue;
+                            }
+                            else if (input == "3")
+                            {
+                                albumNummerIndex = 0;
+                                huidigeAlbum.stop(stylingLines);
+                                break;
+                            }
+                        }
                     }
                 }
+                
             }
             else if (input == "4")
             {
